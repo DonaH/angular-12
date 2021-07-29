@@ -1,18 +1,15 @@
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<h1>{{title | truncate}}</h1>
-<h1>{{jsonValue | json}}</h1>
-<h1>{{newDate | date:'long'}}</h1>
+<input placeholder="user" [(ngModel)]="userObject.name">
+<input placeholder="user" [(ngModel)]="userObject.age">
+<input placeholder="user" [(ngModel)]="userObject.id">
 
+<ng-container *ngIf="showUser">
+  <app-user [user]="userObject" (userEvent)="handleEvent($event)"></app-user>
+</ng-container>
 
-<button (click)="handleEvent()">Click Me</button>
-<input placeholder="hello" [ngModel]="title" />
-
-
+<ul *ngFor="let item of posts">
+  <li>{{item.id}}</li>
+  <li>{{item.title}}</li>
+  <li>{{item.body}}</li>
+</ul>
 <!-- <router-outlet></router-outlet> -->

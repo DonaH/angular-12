@@ -8,11 +8,15 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'Hello World How are you ?';
-  jsonValue = {
-    a: 'hello',
-    b: 'world'
+  userObject = {
+    name: 'John',
+    age: '32',
+    id: 0,
+    isColored: true
   }
-  newDate = new Date();
+
+  showUser: boolean = true;
+  posts: any = [];
 
   constructor(
     private httpService: HttpService
@@ -20,11 +24,18 @@ export class AppComponent {
 
   }
 
-  handleEvent() {
-    this.httpService.getRequest('https://jsonplaceholder.typicode.com/todos/1')
-    .subscribe((response) => {
-      this.jsonValue = response;
-    })
+  handleEvent(event: any) {
+    console.log(event);
+  }
 
+  getPosts(): any {
+    this.httpService.getRequest('https://jsonplaceholder.typicode.com/posts')
+    .subscribe((response) => {
+      this.posts = response;
+    })
+  }
+
+  ngOnInit() {
+    this.getPosts();
   }
 }
