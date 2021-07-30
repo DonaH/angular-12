@@ -16,7 +16,8 @@ export class AppComponent {
   }
 
   showUser: boolean = true;
-  posts: any = [];
+  posts: any = this.httpService.getRequest('https://jsonplaceholder.typicode.com/posts');
+
 
   constructor(
     private httpService: HttpService
@@ -28,14 +29,7 @@ export class AppComponent {
     console.log(event);
   }
 
-  getPosts(): any {
-    this.httpService.getRequest('https://jsonplaceholder.typicode.com/posts')
-    .subscribe((response) => {
-      this.posts = response;
-    })
-  }
-
   ngOnInit() {
-    this.getPosts();
+    // this.getPosts();
   }
 }
